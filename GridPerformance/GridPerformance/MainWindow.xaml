@@ -1,0 +1,40 @@
+﻿<Window x:Class="GridPerformance.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="351*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="2" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="29*"/>
+                <RowDefinition Height="33*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Opções" Margin="10,4,8,0" Foreground="#FF18B3D0" RenderTransformOrigin="0.5,0.5" Height="99" VerticalAlignment="Top">
+                <GroupBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.031"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.212"/>
+                    </TransformGroup>
+                </GroupBox.RenderTransform>
+                <TextBox Margin="132,0,0,0" TextWrapping="Wrap" Width="116" Height="23" Text="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </GroupBox>
+            <Label Content="Tamanho texto:" VerticalAlignment="Top" AutomationProperties.Name="Tb_TamanhoTexto" HorizontalAlignment="Left" Width="116" Margin="18,60,0,0"/>
+            <Label Content="Nr de linhas:" HorizontalAlignment="Left" Margin="18,19,0,0" VerticalAlignment="Top" Height="36" Width="80"/>
+            <Label Content="Min:" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Height="30" Margin="118,62,0,0"/>
+            <Label Content="Max:" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="37" Margin="195,62,0,0"/>
+            <TextBox HorizontalAlignment="Left" Margin="148,68,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="31" Height="18" RenderTransformOrigin="0.673,0.505"/>
+            <TextBox TextWrapping="Wrap" Text="50" Width="30" Margin="232,68,0,15" HorizontalAlignment="Left" RenderTransformOrigin="0.628,0.435"/>
+            <CheckBox Content="Fazer teste varrendo Grid" HorizontalAlignment="Left" Margin="301,19,0,0" VerticalAlignment="Top" Height="23" IsChecked="True" Width="180"/>
+
+        </Grid>
+
+    </Grid>
+</Window>
