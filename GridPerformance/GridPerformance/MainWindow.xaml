@@ -35,8 +35,53 @@
             <CheckBox Name="cb_varredura" Content="Fazer teste varrendo Grid" HorizontalAlignment="Left" Margin="301,19,0,0" VerticalAlignment="Top" Height="23" IsChecked="True" Width="180"/>
             <Button Content="Gerar" HorizontalAlignment="Right" Margin="0,76,45,0" VerticalAlignment="Top" Width="78" Height="20" Click="Button_Click"/>
         </Grid>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=8}" Grid.ColumnSpan="2" Margin="0,103,0,0" SelectionMode="Single" Name="Tabela" AlternatingRowBackground="#FFD0CDCD">
-           
+        <DataGrid Grid.ColumnSpan="2" Margin="0,103,0,0" Name="Tabela" AlternatingRowBackground="#FFE7E7E7" IsEnabled="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descricao" Binding="{Binding Descricao}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Localizacao" Binding="{Binding Localizacao}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Qtde" Binding="{Binding Qtde}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Valor" Binding="{Binding Valor}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Data" Binding="{Binding Data}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cores" Binding="{Binding Cores}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ok" Binding="{Binding Ok}"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="20" BorderBrush="MediumPurple" BorderThickness="1" Background="AliceBlue" Padding="10" Margin="5">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="16" Text="Descrição: " VerticalAlignment="Center" FontWeight="Bold" />
+                                <TextBlock FontSize="12" Foreground="Black" Text="{Binding Descricao}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="16" Text="Localização: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Localizacao}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="16" Text="Quantidade: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Qtde}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="16" Text="Valor: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Valor}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="16" Text="Data: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Data}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="16" Text="Cor: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Cores}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="16" Text="Ok: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Ok}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
         </DataGrid>
     </Grid>
 </Window>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace GridPerformance
@@ -25,7 +27,14 @@ namespace GridPerformance
 			int.TryParse(tb_nrLinha.Text, out var qtdLinhasGerar);
 			int.TryParse(tb_valorMin.Text, out var valorMin);
 			int.TryParse(tb_valorMax.Text, out var valorMax);
-			Tabela.ItemsSource = Modelo.ObterModelo(qtdLinhasGerar, valorMin, valorMax);
+
+			foreach (var item in Modelo.ObterModelo(qtdLinhasGerar, valorMin, valorMax))
+			{
+			
+				Tabela.Items.Add(item);
+
+			}
+
 		}
 	}
 
