@@ -24,17 +24,19 @@
                         <TranslateTransform Y="0.212"/>
                     </TransformGroup>
                 </GroupBox.RenderTransform>
-                <TextBox Margin="130,0,0,0" TextWrapping="Wrap" Width="120" Height="23" Text="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Name="tb_nrLinha" Margin="130,0,0,0" TextWrapping="Wrap" Width="120" Height="23" Text="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             </GroupBox>
             <Label Content="Tamanho texto:" VerticalAlignment="Top" AutomationProperties.Name="Tb_TamanhoTexto" HorizontalAlignment="Left" Width="116" Margin="18,68,0,0"/>
             <Label Content="Nr de linhas:" HorizontalAlignment="Left" Margin="18,19,0,0" VerticalAlignment="Top" Height="36" Width="80"/>
             <Label Content="Min:" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Height="30" Margin="113,68,0,0" RenderTransformOrigin="0.422,0.824"/>
             <Label Content="Max:" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="37" Margin="195,68,0,0" RenderTransformOrigin="0.568,0.967"/>
-            <TextBox HorizontalAlignment="Left" Margin="148,73,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="31" Height="18" RenderTransformOrigin="0.673,0.505"/>
-            <TextBox TextWrapping="Wrap" Text="50" Width="30" Margin="237,73,0,10" HorizontalAlignment="Left" RenderTransformOrigin="0.628,0.435"/>
-            <CheckBox Content="Fazer teste varrendo Grid" HorizontalAlignment="Left" Margin="301,19,0,0" VerticalAlignment="Top" Height="23" IsChecked="True" Width="180"/>
-            <Button Content="Gerar" HorizontalAlignment="Right" Margin="0,76,45,0" VerticalAlignment="Top" Width="78" Height="20"/>
+            <TextBox Name="tb_valorMin"  HorizontalAlignment="Left" Margin="148,73,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="31" Height="18" RenderTransformOrigin="0.673,0.505"/>
+            <TextBox Name="tb_valorMax" TextWrapping="Wrap" Text="50" Width="30" Margin="237,73,0,10" HorizontalAlignment="Left" RenderTransformOrigin="0.628,0.435"/>
+            <CheckBox Name="cb_varredura" Content="Fazer teste varrendo Grid" HorizontalAlignment="Left" Margin="301,19,0,0" VerticalAlignment="Top" Height="23" IsChecked="True" Width="180"/>
+            <Button Content="Gerar" HorizontalAlignment="Right" Margin="0,76,45,0" VerticalAlignment="Top" Width="78" Height="20" Click="Button_Click"/>
         </Grid>
-
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=8}" Grid.ColumnSpan="2" Margin="0,103,0,0" SelectionMode="Single" Name="Tabela" AlternatingRowBackground="#FFD0CDCD">
+           
+        </DataGrid>
     </Grid>
 </Window>
