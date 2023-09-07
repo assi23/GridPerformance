@@ -4,8 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Grid Performance" Height="450" Width="800">
+    <Grid Margin="0,0,0,29">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="49*"/>
             <ColumnDefinition Width="351*"/>
@@ -24,17 +24,148 @@
                         <TranslateTransform Y="0.212"/>
                     </TransformGroup>
                 </GroupBox.RenderTransform>
-                <TextBox Margin="132,0,0,0" TextWrapping="Wrap" Width="116" Height="23" Text="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Name="tb_nrLinha" Margin="130,0,0,0" TextWrapping="Wrap" Width="120" Height="23" Text="100" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Black"></TextBox>
             </GroupBox>
-            <Label Content="Tamanho texto:" VerticalAlignment="Top" AutomationProperties.Name="Tb_TamanhoTexto" HorizontalAlignment="Left" Width="116" Margin="18,60,0,0"/>
+            <Label Content="Tamanho texto:" VerticalAlignment="Top" AutomationProperties.Name="Tb_TamanhoTexto" HorizontalAlignment="Left" Width="116" Margin="18,68,0,0"/>
             <Label Content="Nr de linhas:" HorizontalAlignment="Left" Margin="18,19,0,0" VerticalAlignment="Top" Height="36" Width="80"/>
-            <Label Content="Min:" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Height="30" Margin="118,62,0,0"/>
-            <Label Content="Max:" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="37" Margin="195,62,0,0"/>
-            <TextBox HorizontalAlignment="Left" Margin="148,68,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="31" Height="18" RenderTransformOrigin="0.673,0.505"/>
-            <TextBox TextWrapping="Wrap" Text="50" Width="30" Margin="232,68,0,15" HorizontalAlignment="Left" RenderTransformOrigin="0.628,0.435"/>
-            <CheckBox Content="Fazer teste varrendo Grid" HorizontalAlignment="Left" Margin="301,19,0,0" VerticalAlignment="Top" Height="23" IsChecked="True" Width="180"/>
-
+            <Label Content="Min:" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Height="30" Margin="113,68,0,0" RenderTransformOrigin="0.422,0.824"/>
+            <Label Content="Max:" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="37" Margin="195,68,0,0" RenderTransformOrigin="0.568,0.967"/>
+            <TextBox Name="tb_valorMin"  HorizontalAlignment="Left" Margin="148,73,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="31" Height="23" RenderTransformOrigin="0.673,0.505"/>
+            <TextBox Name="tb_valorMax" TextWrapping="Wrap" Text="50" Width="30" Margin="237,73,0,10" HorizontalAlignment="Left" RenderTransformOrigin="0.628,0.435"/>
+            <CheckBox Name="cb_varredura" Content="Fazer teste varrendo Grid" HorizontalAlignment="Left" Margin="301,19,0,0" VerticalAlignment="Top" Height="23" IsChecked="True" Width="180" Background="#00000000" RenderTransformOrigin="0.5,0.5">
+                <CheckBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </CheckBox.RenderTransform>
+            </CheckBox>
+            <Button x:Name="button" Content="Gerar" HorizontalAlignment="Right" Margin="0,76,45,0" VerticalAlignment="Top" Width="78" Height="20" Click="Button_Click">
+            </Button>
         </Grid>
-
+        <Grid  Grid.ColumnSpan="2" VerticalAlignment="Top">
+            <DataGrid Grid.ColumnSpan="2" Margin="0,103,0,0" Name="Tabela" AlternatingRowBackground="#FFEBEBEB" RowBackground="WhiteSmoke"  Foreground="Blue" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Foreground="Black" IsReadOnly="True" Header="Id" Binding="{Binding Id}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Foreground="Black" IsReadOnly="True" Header="Descricao" Binding="{Binding Descricao}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Foreground="Black" IsReadOnly="True" Header="Localização" Binding="{Binding Localizacao}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Foreground="Black" IsReadOnly="True" Header="Qtde" Binding="{Binding Qtde}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Foreground="Black" IsReadOnly="True" Header="Valor" Binding="{Binding Valor}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Data" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker Foreground="LightSkyBlue" Text="{Binding Data}" Height="20" HorizontalAlignment="Right" Name="datePicker1" VerticalAlignment="Top" Width="115" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Foreground="Black" IsReadOnly="True" Header="Cores" Binding="{Binding Cores}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" >
+                                <Style.Triggers>
+                                    <Trigger Property="HasContent" Value="True">
+                                        <Setter Property="Background" Value="{Binding Cores}"/>
+                                        <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Ok" Binding="{Binding Ok}" >
+                        <DataGridCheckBoxColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridCheckBoxColumn.CellStyle>
+                    </DataGridCheckBoxColumn>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="20" BorderBrush="MediumPurple" BorderThickness="1" Padding="10" Margin="15 5">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF5297A7" Offset="0"/>
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="#FFD8ECF1" Offset="0.989"/>
+                                    <GradientStop Color="#FFAFEDFB"/>
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFB4F2FF"/>
+                                    <GradientStop Color="#FFECF7FA" Offset="0.237"/>
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="White"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Descrição: " VerticalAlignment="Center" FontWeight="Bold" />
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Descricao}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Localização: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Localizacao}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Quantidade: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Qtde}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Valor: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Valor}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Data: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Data}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Cor: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Width="100" Background="{Binding Cores}" VerticalAlignment="Center" AutomationProperties.IsColumnHeader="False" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Ok: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <CheckBox FontSize="12"  Foreground="Black" IsChecked="{Binding Ok}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+            <Label Visibility="Hidden" x:Name="lbErro" Content="" HorizontalAlignment="Left" Margin="302,72,0,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" Background="#FFAB0D0D"/>
+        </Grid>
+        <Label x:Name="lbTempoProcessamento" Content="Tempo de processamento: 0 ms" Margin="0,0,0,-27" FontSize="10"  Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="172" Grid.ColumnSpan="2"/>
+        <Label x:Name="lbTotalLinhas" Grid.Column="2" Content="Total de linhas: 0" Margin="50,0,0,-27" FontSize="10" HorizontalAlignment="Left" Width="106" Height="23" VerticalAlignment="Bottom"/>
+        <ProgressBar x:Name="pbProcessamento" Grid.Column="1" Margin="243,0,0,-21" Visibility="Hidden" HorizontalAlignment="Left" Width="100" Height="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF0627B0"/>
+        <Label x:Name="lbCpu" Grid.Column="1" Content="CPU:" HorizontalAlignment="Left" Visibility="Hidden" Margin="148,0,0,-37" Width="90" FontSize="10" Height="33" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
