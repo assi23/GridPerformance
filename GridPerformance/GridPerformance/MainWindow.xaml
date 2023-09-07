@@ -38,11 +38,41 @@
         <Grid  Grid.ColumnSpan="2" VerticalAlignment="Top">
             <DataGrid Grid.ColumnSpan="2" Margin="0,103,0,0" Name="Tabela" AlternatingRowBackground="#FFEBEBEB" IsEnabled="True" SelectionMode="Single" RowBackground="White">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Descricao" Binding="{Binding Descricao}" ></DataGridTextColumn>
-                    <DataGridTextColumn Header="Localizacao" Binding="{Binding Localizacao}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Qtde" Binding="{Binding Qtde}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Valor" Binding="{Binding Valor}"></DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Header="Id" Binding="{Binding Id}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Header="Descricao" Binding="{Binding Descricao}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Header="Localização" Binding="{Binding Localizacao}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Header="Qtde" Binding="{Binding Qtde}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn IsReadOnly="True" Header="Valor" Binding="{Binding Valor}" >
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
                     <DataGridTemplateColumn Header="Data" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -50,7 +80,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Cores" Binding="{Binding Cores}">
+                    <DataGridTextColumn IsReadOnly="True" Header="Cores" Binding="{Binding Cores}">
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell" >
                                 <Style.Triggers>
@@ -62,7 +92,13 @@
                             </Style>
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
-                    <DataGridCheckBoxColumn  Header="Ok" Binding="{Binding Ok}"/>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Ok" Binding="{Binding Ok}" >
+                        <DataGridCheckBoxColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
+                            </Style>
+                        </DataGridCheckBoxColumn.CellStyle>
+                    </DataGridCheckBoxColumn>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
@@ -105,6 +141,7 @@
         </Grid>
         <Label x:Name="lbTempoProcessamento" Content="Tempo de processamento: 0 ms" Margin="0,0,0,-27" FontSize="10"  Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="172" Grid.ColumnSpan="2"/>
         <Label x:Name="lbTotalLinhas" Grid.Column="2" Content="Total de linhas: 0" Margin="50,0,0,-27" FontSize="10" HorizontalAlignment="Left" Width="106" Height="23" VerticalAlignment="Bottom"/>
-        <ProgressBar x:Name="pbProcessamento" Grid.Column="1" Margin="166,0,0,-23" Visibility="Hidden" HorizontalAlignment="Left" Width="100" Height="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF0627B0"/>
+        <ProgressBar x:Name="pbProcessamento" Grid.Column="1" Margin="243,0,0,-21" Visibility="Hidden" HorizontalAlignment="Left" Width="100" Height="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF0627B0"/>
+        <Label x:Name="lbCpu" Grid.Column="1" Content="CPU:" HorizontalAlignment="Left" Visibility="Hidden" Margin="148,0,0,-37" Width="90" FontSize="10" Height="33" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

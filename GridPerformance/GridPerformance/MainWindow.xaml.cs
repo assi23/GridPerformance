@@ -1,13 +1,9 @@
 ﻿using GridPerformance.Modelos;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace GridPerformance
@@ -21,19 +17,18 @@ namespace GridPerformance
 		private int valorMin;
 		private int valorMax;
 		private bool deveVarrer;
+		protected PerformanceCounter cpuCounter;
+
 		public MainWindow()
 		{
 			InitializeComponent();
-			Tabela.BeginningEdit += (s, ss) => ss.Cancel = true;
+			cpuCounter = new PerformanceCounter();
+
+			cpuCounter.CategoryName = "Processor";
+			cpuCounter.CounterName = "% Processor Time";
+			cpuCounter.InstanceName = "_Total";
 		}
 
-		private void SetarValores()
-		{
-			int.TryParse(tb_nrLinha.Text, out qtdLinhasGerar);
-			int.TryParse(tb_valorMin.Text, out valorMin);
-			int.TryParse(tb_valorMax.Text, out valorMax);
-			deveVarrer = cb_varredura.IsChecked ?? false;
-		}
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			SetarValores();
@@ -57,8 +52,18 @@ namespace GridPerformance
 
 			lbTotalLinhas.Content = "Total de linhas:" + Tabela.Items.Count;
 			lbTempoProcessamento.Content = "Tempo de processamento:" + dataFim.Subtract(dataInicio).Milliseconds + " ms";
+			Tabela.SelectedIndex = -1;
 
 			base.Cursor = Cursors.Arrow;
+		}
+
+		private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			if (sender.GetType() == typeof(DataGridCell))
+			{
+				DataGridCell cell = sender as DataGridCell;
+				cell.IsEditing = true;
+			}
 		}
 
 		private bool Validacoes()
@@ -82,7 +87,7 @@ namespace GridPerformance
 				lbErro.Content += "O número de linhas a ser gerado não pode ser menor que 0!";
 			}
 
-			if(!string.IsNullOrWhiteSpace(lbErro.Content.ToString()))
+			if (!string.IsNullOrWhiteSpace(lbErro.Content.ToString()))
 				return false;
 
 			return true;
@@ -102,16 +107,19 @@ namespace GridPerformance
 
 			pbProcessamento.Maximum = Tabela.Items.Count;
 			pbProcessamento.Visibility = Visibility.Visible;
+			lbCpu.Visibility = Visibility.Visible;
 
-			for (int i = 0; i < Tabela.Items.Count; i++)
+			for (int i = 0; i < qtdLinhasGerar; i++)
 			{
 				Tabela.SelectedIndex = i;
 				DoEvents();
 				Tabela.ScrollIntoView(Tabela.Items[i]);
 				pbProcessamento.Value = i;
+				lbCpu.Content = "CPU:" + ObterUsoCpu();
 			}
 
 			pbProcessamento.Visibility = Visibility.Hidden;
+			lbCpu.Visibility = Visibility.Hidden;
 		}
 
 		private void AdicionarNaLista()
@@ -120,6 +128,19 @@ namespace GridPerformance
 			{
 				Tabela.Items.Add(item);
 			}
+		}
+
+		private void SetarValores()
+		{
+			int.TryParse(tb_nrLinha.Text, out qtdLinhasGerar);
+			int.TryParse(tb_valorMin.Text, out valorMin);
+			int.TryParse(tb_valorMax.Text, out valorMax);
+			deveVarrer = cb_varredura.IsChecked ?? false;
+		}
+
+		public string ObterUsoCpu()
+		{
+			return cpuCounter.NextValue() + "%";
 		}
 
 		public void DoEvents()
