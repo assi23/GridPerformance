@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Grid Performance" Height="450" Width="800">
     <Grid Margin="0,0,0,29">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="49*"/>
@@ -43,17 +43,12 @@
                     <DataGridTextColumn Header="Localizacao" Binding="{Binding Localizacao}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Qtde" Binding="{Binding Qtde}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Valor" Binding="{Binding Valor}"></DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Data">
+                    <DataGridTemplateColumn Header="Data" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Data}" />
+                                <DatePicker Text="{Binding Data}" Height="20" HorizontalAlignment="Right" Name="datePicker1" VerticalAlignment="Top" Width="115" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.CellEditingTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Data}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Cores" Binding="{Binding Cores}">
                         <DataGridTextColumn.CellStyle>
@@ -106,6 +101,7 @@
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
+            <Label Visibility="Hidden" x:Name="lbErro" Content="" HorizontalAlignment="Left" Margin="302,72,0,0" VerticalAlignment="Top" Foreground="#FFEEEEEE" Background="#FFAB0D0D"/>
         </Grid>
         <Label x:Name="lbTempoProcessamento" Content="Tempo de processamento: 0 ms" Margin="0,0,0,-27" FontSize="10"  Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="172" Grid.ColumnSpan="2"/>
         <Label x:Name="lbTotalLinhas" Grid.Column="2" Content="Total de linhas: 0" Margin="50,0,0,-27" FontSize="10" HorizontalAlignment="Left" Width="106" Height="23" VerticalAlignment="Bottom"/>
