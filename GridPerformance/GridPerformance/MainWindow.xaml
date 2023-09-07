@@ -38,7 +38,7 @@
         <Grid  Grid.ColumnSpan="2" VerticalAlignment="Top">
             <DataGrid Grid.ColumnSpan="2" Margin="0,103,0,0" Name="Tabela" AlternatingRowBackground="#FFEBEBEB" IsEnabled="True" SelectionMode="Single" RowBackground="White">
                 <DataGrid.Columns>
-                    <DataGridTextColumn IsReadOnly="True" Header="Id" Binding="{Binding Id}" >
+                    <DataGridTextColumn IsReadOnly="True" Header="Id" Binding="{Binding Id}">
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick" />
@@ -102,7 +102,19 @@
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
-                        <Border CornerRadius="20" BorderBrush="MediumPurple" BorderThickness="1" Background="AliceBlue" Padding="10" Margin="15 5">
+                        <Border CornerRadius="20" BorderBrush="MediumPurple" BorderThickness="1" Padding="10" Margin="15 5">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF5297A7" Offset="0"/>
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="#FFAEF0FF" Offset="1"/>
+                                    <GradientStop Color="#FFAFEDFB" Offset="1"/>
+                                    <GradientStop Color="White" Offset="0.072"/>
+                                    <GradientStop Color="#FFB4F2FF" Offset="1"/>
+                                    <GradientStop Color="#FFA2E2EF" Offset="0.998"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock FontSize="16" Text="Descrição: " VerticalAlignment="Center" FontWeight="Bold" />
