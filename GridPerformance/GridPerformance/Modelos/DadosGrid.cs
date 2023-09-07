@@ -11,7 +11,7 @@ namespace GridPerformance.Modelos
 		public string? Descricao { get; set; }
 		public string? Localizacao { get; set; }
 		public int Qtde { get; set; }
-		public decimal Valor { get; set; }
+		public double Valor { get; set; }
 		public DateTime Data { get; set; }
 		public SolidColorBrush? Cores { get; set; }
 		public bool Ok { get; set; }
@@ -28,7 +28,7 @@ namespace GridPerformance.Modelos
 					Descricao = RandomHelper.StringAleatoria(random, min, max),
 					Localizacao = RandomHelper.StringAleatoria(random, min, max),
 					Qtde = random.Next(),
-					Valor = (decimal)random.NextDouble(),
+					Valor = random.NextDouble(),
 					Data = RandomHelper.DiasAleatorios(random),
 					Cores = RandomHelper.CoresAleatorias(random),
 					Ok = random.Next(2) == 1
