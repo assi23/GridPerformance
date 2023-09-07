@@ -129,32 +129,32 @@
                             </Border.Background>
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="16" Text="Descrição: " VerticalAlignment="Center" FontWeight="Bold" />
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Descrição: " VerticalAlignment="Center" FontWeight="Bold" />
                                     <TextBlock FontSize="12" Foreground="Black" Text="{Binding Descricao}" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="16" Text="Localização: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Localização: " VerticalAlignment="Center" FontWeight="Bold"/>
                                     <TextBlock FontSize="12" Foreground="Black" Text="{Binding Localizacao}" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="16" Text="Quantidade: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Quantidade: " VerticalAlignment="Center" FontWeight="Bold"/>
                                     <TextBlock FontSize="12" Foreground="Black" Text="{Binding Qtde}" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="16" Text="Valor: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Valor: " VerticalAlignment="Center" FontWeight="Bold"/>
                                     <TextBlock FontSize="12" Foreground="Black" Text="{Binding Valor}" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="16" Text="Data: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Data: " VerticalAlignment="Center" FontWeight="Bold"/>
                                     <TextBlock FontSize="12" Foreground="Black" Text="{Binding Data}" VerticalAlignment="Center" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="16" Text="Cor: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Cor: " VerticalAlignment="Center" FontWeight="Bold"/>
                                     <TextBlock FontSize="12" Foreground="Black" Width="100" Background="{Binding Cores}" VerticalAlignment="Center" AutomationProperties.IsColumnHeader="False" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="16" Text="Ok: " VerticalAlignment="Center" FontWeight="Bold"/>
-                                    <CheckBox FontSize="12" Foreground="Black" IsChecked="{Binding Ok}" VerticalAlignment="Center" />
+                                    <TextBlock FontSize="16" Foreground="Black" Text="Ok: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <CheckBox FontSize="12"  Foreground="Black" IsChecked="{Binding Ok}" VerticalAlignment="Center" />
                                 </StackPanel>
                             </StackPanel>
                         </Border>
