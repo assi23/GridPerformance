@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,0,0,29">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="49*"/>
             <ColumnDefinition Width="351*"/>
@@ -35,53 +35,80 @@
             <CheckBox Name="cb_varredura" Content="Fazer teste varrendo Grid" HorizontalAlignment="Left" Margin="301,19,0,0" VerticalAlignment="Top" Height="23" IsChecked="True" Width="180"/>
             <Button Content="Gerar" HorizontalAlignment="Right" Margin="0,76,45,0" VerticalAlignment="Top" Width="78" Height="20" Click="Button_Click"/>
         </Grid>
-        <DataGrid Grid.ColumnSpan="2" Margin="0,103,0,0" Name="Tabela" AlternatingRowBackground="#FFE7E7E7" IsEnabled="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Descricao" Binding="{Binding Descricao}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Localizacao" Binding="{Binding Localizacao}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Qtde" Binding="{Binding Qtde}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Valor" Binding="{Binding Valor}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Data" Binding="{Binding Data}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Cores" Binding="{Binding Cores}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Ok" Binding="{Binding Ok}"></DataGridTextColumn>
-            </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <Border CornerRadius="20" BorderBrush="MediumPurple" BorderThickness="1" Background="AliceBlue" Padding="10" Margin="5">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Descrição: " VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock FontSize="12" Foreground="Black" Text="{Binding Descricao}" VerticalAlignment="Center" />
+        <Grid  Grid.ColumnSpan="2" VerticalAlignment="Top">
+            <DataGrid Grid.ColumnSpan="2" Margin="0,103,0,0" Name="Tabela" AlternatingRowBackground="#FFEBEBEB" IsEnabled="True" SelectionMode="Single" RowBackground="White">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Descricao" Binding="{Binding Descricao}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Localizacao" Binding="{Binding Localizacao}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Qtde" Binding="{Binding Qtde}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Valor" Binding="{Binding Valor}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Data">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Data}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Data}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Cores" Binding="{Binding Cores}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" >
+                                <Style.Triggers>
+                                    <Trigger Property="HasContent" Value="True">
+                                        <Setter Property="Background" Value="{Binding Cores}"/>
+                                        <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridCheckBoxColumn  Header="Ok" Binding="{Binding Ok}"/>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="20" BorderBrush="MediumPurple" BorderThickness="1" Background="AliceBlue" Padding="10" Margin="15 5">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Text="Descrição: " VerticalAlignment="Center" FontWeight="Bold" />
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Descricao}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Text="Localização: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Localizacao}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Text="Quantidade: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Qtde}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Text="Valor: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Valor}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Text="Data: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Text="{Binding Data}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Text="Cor: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock FontSize="12" Foreground="Black" Width="100" Background="{Binding Cores}" VerticalAlignment="Center" AutomationProperties.IsColumnHeader="False" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="16" Text="Ok: " VerticalAlignment="Center" FontWeight="Bold"/>
+                                    <CheckBox FontSize="12" Foreground="Black" IsChecked="{Binding Ok}" VerticalAlignment="Center" />
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Localização: " VerticalAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Localizacao}" VerticalAlignment="Center" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Quantidade: " VerticalAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Qtde}" VerticalAlignment="Center" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Valor: " VerticalAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Valor}" VerticalAlignment="Center" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Data: " VerticalAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Data}" VerticalAlignment="Center" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Cor: " VerticalAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Cores}" VerticalAlignment="Center" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="16" Text="Ok: " VerticalAlignment="Center" FontWeight="Bold"/>
-                                <TextBlock FontSize="12" Foreground="MidnightBlue" Text="{Binding Ok}" VerticalAlignment="Center" />
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
-        </DataGrid>
+                        </Border>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </Grid>
+        <Label x:Name="lbTempoProcessamento" Content="Tempo de processamento: 0 ms" Margin="0,0,0,-27" FontSize="10"  Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="172" Grid.ColumnSpan="2"/>
+        <Label x:Name="lbTotalLinhas" Grid.Column="2" Content="Total de linhas: 0" Margin="50,0,0,-27" FontSize="10" HorizontalAlignment="Left" Width="106" Height="23" VerticalAlignment="Bottom"/>
+        <ProgressBar x:Name="pbProcessamento" Grid.Column="1" Margin="166,0,0,-23" Visibility="Hidden" HorizontalAlignment="Left" Width="100" Height="10" VerticalAlignment="Bottom" Background="White" Foreground="#FF0627B0"/>
     </Grid>
 </Window>
